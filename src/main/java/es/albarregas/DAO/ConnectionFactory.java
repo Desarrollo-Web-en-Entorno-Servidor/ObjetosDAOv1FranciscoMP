@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     private static final String USERNAME = "java2019";
     private static final String PASSWORD = "2019";
-    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/EuiposDept";
+    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/EquiposDept";
     
     public static Connection conectar() throws ClassNotFoundException{
 	Connection con = null;

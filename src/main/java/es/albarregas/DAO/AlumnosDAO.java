@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +21,7 @@ public class AlumnosDAO implements IAlumnosDAO{
  
     @Override
     public ArrayList<Alumno> getAlumnos(String limit){
+        ArrayList <Alumno> lista = new ArrayList();
         String consulta="select nombre,grupos from alumnos" + limit;
         try{
             Statement sentencia=ConnectionFactory.conectar().createStatement();
@@ -35,7 +38,19 @@ public class AlumnosDAO implements IAlumnosDAO{
     }catch (SQLException ex){
         System.out.println("Error al ejecutar la sentencia.");
         ex.printStackTrace();
-    }
+    }   catch (ClassNotFoundException ex) {
+            Logger.getLogger(AlumnosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     return lista;
+    }
+
+    @Override
+    public ArrayList<Alumno> getAlumnosEquipos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void closeConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
