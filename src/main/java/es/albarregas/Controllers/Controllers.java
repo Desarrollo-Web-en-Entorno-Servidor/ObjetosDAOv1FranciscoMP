@@ -5,7 +5,7 @@
  */
 package es.albarregas.Controllers;
 
-import es.abarregas.Beans.Alumno;
+import es.albarregas.Beans.Alumno;
 import es.albarregas.DAO.AlumnosDAO;
 import es.albarregas.DAO.IAlumnosDAO;
 import java.io.IOException;

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.abarregas.Beans;
+package es.albarregas.Beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Equipo implements Serializable{
     private int idEquipo;
     private String marca;
     private String numSerie;
+
 
     public int getIdEquipo() {
         return idEquipo;

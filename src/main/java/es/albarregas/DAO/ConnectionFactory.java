@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package es.albarregas.DAO;
 
 import java.sql.Connection;
@@ -14,19 +10,36 @@ import java.sql.SQLException;
  * @author FranciscoAntonio
  */
 public class ConnectionFactory {
-    private static final String USERNAME = "java2019";
-    private static final String PASSWORD = "2019";
-    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/EquiposDept";
+       private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/pruebasjava";
+    private static final String DB_USER = "java2019";
+    private static final String DB_PASS = "2019";
     
-    public static Connection conectar() throws ClassNotFoundException{
-	Connection con = null;
-	try {
-	    Class.forName("com.mysql.jdbc.Driver");
-	    con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
-	    System.out.println("Connected");
-	}catch (SQLException e){
-	System.err.println(e);
-	}
-	return con;
+    private static Connection conexion = null;
+    
+    public static Connection getConnection(){
+        if(conexion == null){
+            try {
+                Class.forName(JDBC_DRIVER);
+                conexion = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            } catch(ClassNotFoundException e){
+                System.out.println("Driver no encontrado");
+            } catch(SQLException e){
+                System.out.println("Error en la conexión");
+                e.printStackTrace();
+            }
+        }
+        return conexion;
+    }
+    
+    public static void closeConnection(Connection conexion){
+        try {
+            conexion.close();
+            conexion=null;
+        } catch(SQLException e){
+            System.out.println("Error al cerrar la conexión a la BD");
+            e.printStackTrace();
+        }
+        
     }
 }
